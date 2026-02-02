@@ -1,8 +1,0 @@
-__pycache__
-.idea
-dist/
-build
-*.egg-info
-.mypy_cache
-venv/
-.eggs/
