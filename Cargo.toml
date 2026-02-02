@@ -1,0 +1,69 @@
+[package]
+name = "derenpy"
+version = "0.1.0"
+edition = "2024"
+description = "A comprehensive Ren'Py game reverse engineering and translation toolkit"
+authors = ["furrymonster"]
+license = "MIT"
+readme = "README.md"
+
+[[bin]]
+name = "derenpy"
+path = "src/main.rs"
+
+[dependencies]
+# CLI framework
+clap = { version = "4", features = ["derive"] }
+
+# Async runtime
+tokio = { version = "1", features = ["full"] }
+
+# Error handling
+anyhow = "1"
+thiserror = "2"
+
+# Serialization
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+serde-pickle = "1"
+
+# Compression
+flate2 = "1"
+
+# File operations
+walkdir = "2"
+
+# Parallel processing
+rayon = "1.10"
+
+# Regex
+regex = "1"
+
+# URL encoding
+urlencoding = "2"
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# Progress bar
+indicatif = "0.17.11"
+
+# HTTP client
+reqwest = { version = "0.12.28", features = ["blocking", "json"] }
+
+# Colored output
+colored = "3"
+
+# Config file
+toml = "0.9.8"
+dirs = "6"
+
+# SQLite for translation cache
+rusqlite = { version = "0.31", features = ["bundled"] }
+
+# MD5 for Ren'Py-compatible translation identifiers
+md5 = "0.7"
+
+[dev-dependencies]
+tempfile = "3"

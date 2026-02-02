@@ -1,0 +1,6 @@
+[submodule "vendor/unrpa"]
+	path = vendor/unrpa
+	url = https://github.com/Lattyware/unrpa.git
+[submodule "vendor/unrpyc"]
+	path = vendor/unrpyc
+	url = https://github.com/CensoredUsername/unrpyc.git
