@@ -54,8 +54,7 @@ fn unpack_single(input: &Path, output: Option<&Path>, force: bool) -> Result<()>
     let pb = ProgressBar::new(archive.file_count() as u64);
     pb.set_style(
         ProgressStyle::default_bar()
-            .template("{spinner:.green} [{bar:40.cyan/blue}] {pos}/{len} {msg}")
-            .unwrap()
+            .template("{spinner:.green} [{bar:40.cyan/blue}] {pos}/{len} {msg}")?
             .progress_chars("=>-"),
     );
 

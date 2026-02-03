@@ -179,8 +179,7 @@ fn translate_single(
     let pb = ProgressBar::new(entries.len() as u64);
     pb.set_style(
         ProgressStyle::default_bar()
-            .template("{spinner:.green} [{bar:40.cyan/blue}] {pos}/{len}")
-            .unwrap()
+            .template("{spinner:.green} [{bar:40.cyan/blue}] {pos}/{len}")?
             .progress_chars("=>-"),
     );
     pb.enable_steady_tick(std::time::Duration::from_millis(100));

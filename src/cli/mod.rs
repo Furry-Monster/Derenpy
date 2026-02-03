@@ -3,7 +3,7 @@ use std::path::PathBuf;
 
 #[derive(Parser)]
 #[command(name = "derenpy")]
-#[command(author, version, about = "Ren'Py game reverse engineering and translation toolkit", long_about = None)]
+#[command(author, version, about = "Renpy game reverse engineering and translation toolkit", long_about = None)]
 pub struct Cli {
     #[command(subcommand)]
     pub command: Commands,
@@ -144,7 +144,7 @@ pub struct TranslateArgs {
     #[arg(short, long, default_value_t = false)]
     pub recursive: bool,
 
-    /// Generate Ren'Py translation files instead of modifying source
+    /// Generate Renpy translation files instead of modifying source
     #[arg(long, default_value_t = false)]
     pub patch_mode: bool,
 }

@@ -81,7 +81,7 @@ impl Translator {
 pub fn run(args: PatchArgs) -> Result<()> {
     let cfg = Config::load().unwrap_or_default();
     let input = &args.input;
-    let mut temp_dir_to_cleanup: Option<std::path::PathBuf> = None;
+    let mut temp_dir_to_cleanup: Option<PathBuf> = None;
 
     println!("{}", "[Patch] Translation Patch Generator".green());
 
@@ -209,8 +209,7 @@ pub fn run(args: PatchArgs) -> Result<()> {
             let pb = ProgressBar::new(total_dialogues as u64);
             pb.set_style(
                 ProgressStyle::default_bar()
-                    .template("{spinner:.green} [{bar:40.cyan/blue}] {pos}/{len}")
-                    .unwrap()
+                    .template("{spinner:.green} [{bar:40.cyan/blue}] {pos}/{len}")?
                     .progress_chars("=>-"),
             );
             pb.enable_steady_tick(std::time::Duration::from_millis(100));
@@ -234,25 +233,22 @@ pub fn run(args: PatchArgs) -> Result<()> {
             );
 
             for ((path, idx), result) in text_indices.into_iter().zip(results.into_iter()) {
-                if let Some(dialogues) = all_dialogues.get_mut(&path) {
-                    if let Some(entry) = dialogues.get_mut(idx) {
-                        match result {
-                            Ok(translated) => {
-                                // Apply glossary if available
-                                let final_text = match &glossary {
-                                    Some(g) => g.apply(&translated),
-                                    None => translated,
-                                };
-                                entry.translated_text = Some(final_text);
-                            }
-                            Err(e) => {
-                                pb.suspend(|| {
-                                    eprintln!(
-                                        "{}",
-                                        format!("[ERROR] Translation failed: {}", e).red()
-                                    );
-                                });
-                            }
+                if let Some(dialogues) = all_dialogues.get_mut(&path)
+                    && let Some(entry) = dialogues.get_mut(idx)
+                {
+                    match result {
+                        Ok(translated) => {
+                            // Apply glossary if available
+                            let final_text = match &glossary {
+                                Some(g) => g.apply(&translated),
+                                None => translated,
+                            };
+                            entry.translated_text = Some(final_text);
+                        }
+                        Err(e) => {
+                            pb.suspend(|| {
+                                eprintln!("{}", format!("[ERROR] Translation failed: {}", e).red());
+                            });
                         }
                     }
                 }

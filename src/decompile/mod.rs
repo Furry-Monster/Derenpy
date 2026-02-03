@@ -107,8 +107,7 @@ fn decompile_directory(
     let pb = ProgressBar::new(rpyc_files.len() as u64);
     pb.set_style(
         ProgressStyle::default_bar()
-            .template("{spinner:.green} [{bar:40.cyan/blue}] {pos}/{len} {msg}")
-            .unwrap()
+            .template("{spinner:.green} [{bar:40.cyan/blue}] {pos}/{len} {msg}")?
             .progress_chars("=>-"),
     );
 
