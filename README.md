@@ -18,7 +18,7 @@ A comprehensive Ren'Py game reverse engineering and translation toolkit.
 
 ```bash
 # Clone with submodules
-git clone --recursive https://github.com/yourusername/derenpy.git
+git clone --recursive https://github.com/Furry-Monster/derenpy.git
 cd derenpy
 
 # Build
